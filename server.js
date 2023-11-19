@@ -13,9 +13,17 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
 
-app.get('/index', function(req, res, next){
-    res.render('index');
+app.get('/pages/sign-up', function(req, res, next){
+    res.render('pages/sign-up')
 })
+
+
+app.post('/pages/index', function(req, res, next){
+  
+    
+})
+
+
 
 app.get('/pages/billing', function(req, res){
     res.render('pages/billing');
