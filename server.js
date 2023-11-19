@@ -3,6 +3,7 @@ const express = require('express')
 const ejs = require('ejs');
 const app= express();
 const cookieParser = require('cookie-parser')
+const loginRouter = require('./routes/login')
 
 app.set('view engine', 'ejs')
 // app.set('', path.join(__dirname, 'views'));
@@ -13,8 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
 
+app.use('/user',loginRouter);
+
 app.get('/', (req, res, next)=>{
-    res.redirect('pages/login')
+    res.redirect('pages/index')
 })
 
 app.get('/pages/login', function(req, res, next){
@@ -23,9 +26,9 @@ app.get('/pages/login', function(req, res, next){
 
 
 
-app.post('/pages/index', function(req, res, next){
+app.get('/pages/index', function(req, res, next){
   
-    
+    res.render('pages/index')
 })
 
 
