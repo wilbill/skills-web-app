@@ -13,9 +13,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
 
-app.get('/pages/sign-up', function(req, res, next){
-    res.render('pages/sign-up')
+app.get('/', (req, res, next)=>{
+    res.redirect('pages/login')
 })
+
+app.get('/pages/login', function(req, res, next){
+    res.render('pages/login')
+})
+
 
 
 app.post('/pages/index', function(req, res, next){
