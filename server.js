@@ -17,7 +17,7 @@ app.use(cookieParser())
 app.use('/user',loginRouter);
 
 app.get('/', (req, res, next)=>{
-    res.redirect('pages/index')
+    res.redirect('pages/login')
 })
 
 app.get('/pages/login', function(req, res, next){
