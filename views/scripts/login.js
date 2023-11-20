@@ -38,6 +38,8 @@ function login(){
         success: function(data) {
           console.log('Data received:', data);
           // Handle the data or update the UI here
+          // Store cookie
+          $.cookie('Id',data.user._id)
           window.location.replace("http://localhost:80/user/index")
         },
         error: function(error) {
