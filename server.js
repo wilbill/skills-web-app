@@ -4,6 +4,7 @@ const ejs = require('ejs');
 const app= express();
 const cookieParser = require('cookie-parser')
 const loginRouter = require('./routes/login')
+const profileRouter = require('./routes/profile-routes')
 
 app.set('view engine', 'ejs')
 // app.set('', path.join(__dirname, 'views'));
@@ -15,6 +16,7 @@ app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
 
 app.use('/user',loginRouter);
+app.use('/profile',profileRouter);
 
 app.get('/', (req, res, next)=>{
     res.redirect('pages/login')

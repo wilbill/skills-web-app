@@ -22,6 +22,14 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+  
+  <!-- Jquery import -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="../scripts/jc.js"></script>
+
+<!-- custom js -->
+  <script src="../scripts/profile.js"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -380,7 +388,7 @@
               <b>Create a public profile</b>
             </div>
             <div class="card-body">
-              <form action="" method="post">
+              <form action="/profile/create" method="post">
                 <div class="row">
                   <div class="col-4">
                     <label for="">Phone Number</label>
@@ -389,11 +397,13 @@
                   <div class="col-4">
                     <label for=""> School</label>
                     <input type="text" class="form-control" name="school" value="Maharishi University" readonly>
+                    <input type="text" class="form-control" name="_id" id="_id" hidden>
                   </div>
                   <div class="col-4">
                     <label for=""> Skills</label>
-                    <select class="form-control" name="school">
-                        <option value=""></option>
+                    <select class="form-control" name="skills" multiple>
+                        <option value="Java" selected>Java</option>
+                        <option value="JavaScript">JavaScript</option>
                     </select>
                   </div>
                 </div>
@@ -404,7 +414,7 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button type="button" class="btn btn-outline-primary btn-sm mb-0">Create profile</button>
+                  <input type="submit" class="btn btn-outline-primary btn-sm mb-0" value="Create profile">
                 </div>
               </form>
             </div>

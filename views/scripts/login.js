@@ -26,20 +26,21 @@ function getAllUsers(){
 
 }
 
-function login(){
+function create(){
 
         let email = $('#email-input').val()
         let password = $('#password-input').val()
 
         $.ajax({
-        url: 'http://localhost:4000/user/login', // Replace with your API endpoint
+        url: '/profile/create', // Replace with your API endpoint
         method: 'POST',
         data: {email, password},
         success: function(data) {
           console.log('Data received:', data);
           // Handle the data or update the UI here
           // Store cookie
-          $.cookie('Id',data.user._id)
+          // $.cookie('Id',data.user._id)
+          $.cookie('Id', data.user._id);
           window.location.replace("http://localhost:80/user/index")
         },
         error: function(error) {
