@@ -38,7 +38,7 @@ function login(){
         success: function(data) {
           console.log('Data received:', data);
           // Handle the data or update the UI here
-          window.location.replace("http://localhost:80/user/login")
+          window.location.replace("http://localhost:80/user/index")
         },
         error: function(error) {
           console.error('Error:', error);
