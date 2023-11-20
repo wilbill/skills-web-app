@@ -1,7 +1,7 @@
 $(()=>{
     console.log('Jquery is running')
     // getAllUsers();
-
+    $('#warning-cd').hide()
     $('#login-btn').on('click',(e)=>{
         login()
     })
@@ -42,6 +42,13 @@ function login(){
         },
         error: function(error) {
           console.error('Error:', error);
+          $('#warning-cd').show()
+          $('#warning-text').html(error.responseJSON.message)
+
+
+          setTimeout(()=>{
+            $('#warning').hide()
+          },5000)
           // Handle errors here
         }
         });
