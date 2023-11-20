@@ -6,6 +6,12 @@ const cookieParser = require('cookie-parser')
 const loginRouter = require('./routes/login')
 const profileRouter = require('./routes/profile-routes')
 
+// let  skillsArr = {'JAVA':{price:'10', date:''}, 'C++':{}, 'C#', 'C', 'LARAVEL', 
+// 'JAVASCRIPT', 'NODE JS', 'REACT JS', 'ANGULAR','PYTHON', 'PHP', 
+// 'PERL', 'RUST', 'SCALA', 'HTML', 'CSS', 'SQL', 'NoSQL',
+//         'TypeScript', 'MATLAB'
+// }
+
 app.set('view engine', 'ejs')
 // app.set('', path.join(__dirname, 'views'));
 
@@ -21,22 +27,14 @@ app.use('/profile',profileRouter);
 app.get('/', (req, res, next)=>{
     res.redirect('pages/login')
 })
-
-app.get('/pages/login', function(req, res, next){
-    res.render('pages/login')
-})
-
-
-
+//Assuming one has access to the index page...ie has logged in
 app.get('/pages/index', function(req, res, next){
-  
+    //must be accessed after login, hence cookies needed
     res.render('pages/index')
 })
 
-
-
-app.get('/pages/billing', function(req, res){
-    res.render('pages/billing');
+app.get('/pages/profile', function(req, res){
+    res.render('pages/profile');
 })
 
 // app.get('/pages/dashboard', function(req, res){
