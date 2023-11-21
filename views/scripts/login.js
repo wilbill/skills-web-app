@@ -26,13 +26,13 @@ function getAllUsers(){
 
 }
 
-function create(){
+function login(){
 
         let email = $('#email-input').val()
         let password = $('#password-input').val()
 
         $.ajax({
-        url: '/profile/create', // Replace with your API endpoint
+        url: 'http://localhost:4000/user/login', // Replace with your API endpoint
         method: 'POST',
         data: {email, password},
         success: function(data) {
@@ -41,7 +41,8 @@ function create(){
           // Store cookie
           // $.cookie('Id',data.user._id)
           $.cookie('Id', data.user._id);
-          window.location.replace("http://localhost:80/user/index")
+          // window.location.replace("http://localhost:80/user/index")
+          window.location.replace(`http://localhost:80/user/index/${data.user._id}`)
         },
         error: function(error) {
           console.error('Error:', error);
