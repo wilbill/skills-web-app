@@ -1,16 +1,17 @@
 const path = require('path')
 const express = require('express')
-const ejs = require('ejs');
+const ejsServer = require('ejs');
 const app= express();
 const cookieParser = require('cookie-parser')
 const loginRouter = require('./routes/login')
 const profileRouter = require('./routes/profile-routes')
 const axios = require('axios');
-const { error } = require('console');
+const {getSkills} = require('./utils/utility')
 
-let skills;
+
 
 app.set('view engine', 'ejs')
+app.engine('ejs', ejsServer.renderFile)
 // app.set('', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'views')));
@@ -22,14 +23,20 @@ app.use(express.urlencoded({extended: false}))
 app.use('/user',loginRouter);
 app.use('/profile',profileRouter);
 
-app.get('/', (req, res, next)=>{
+app.get('/', async (req, res, next)=>{
+
+
+    let skills = await getSkills()
+
+    console.log("sk: ",skills)
     console.log(req.cookies)
     if(req.cookies._id){
         const id = req.cookies['_id']
         axios.get(`http://localhost:4000/profile/findOne/${id}`).then((response)=>{
             console.log('Response', response.data)
-            res.render('pages/index',{data: response.data})
+            res.render('pages/index',{data: response.data, skills: skills})
         }).catch((err)=>{
+
             console.log('Err', err)
             res.redirect('pages/login')
         })
@@ -38,33 +45,40 @@ app.get('/', (req, res, next)=>{
     }
 })
 
-axios.get('http://localhost:4000/skills')
-.then((res)=>{
-    // console.log(res.data)
-    skills=res.data
-    console.log(skills)
-    
-})
-.catch((err)=>{console.log(error)})
 //Assuming one has access to the index page...ie has logged in
-app.get('/pages/index', function(req, res, next){   
-    //must be accessed after login, hence cookies needed
-
-    res.render('pages/index', {skills:skills})
+// app.get('/pages/index', function(req, res, next){   
+//     //must be accessed after login, hence cookies needed
+//     let skills = getSkills()
+//     res.render('pages/index', {skills:skills})
     
-})
+// })
 
-app.get('/pages/profile', function(req, res){
-    res.render('pages/profile', {skills:skills});
+app.get('/pages/profile', async function(req, res){
+    let skills =await getSkills()
+    console.log(skills)
+    if(req.cookies._id){
+        const id = req.cookies['_id']
+        axios.get(`http://localhost:4000/profile/findOne/${id}`).then((response)=>{
+            console.log('Response', response.data)
+            res.render('pages/profile',{data: response.data, skills: skills})
+        }).catch((err)=>{
+
+            console.log('Err', err)
+            res.render('pages/profile',{skills: skills})
+        })
+    }else{
+        res.redirect('pages/login')
+    }
+   
 })
 
 // app.get('/pages/dashboard', function(req, res){
 //     res.render('pages/dashboard')
 // })
 
-app.get('/pages/profile', function(req, res){
-    res.render('pages/profile')
-})
+// app.get('/pages/profile', function(req, res){
+//     res.render('pages/profile')
+// })
 
 app.get('/pages/sign-in', function(req, res){
     res.render('pages/sign-in')
