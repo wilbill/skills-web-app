@@ -4,7 +4,8 @@ const express = require('express');
 let router = express.Router({'caseSensitive':false,
 "strict": false})
 
-router.get('/index',(req,res,next)=>{
+router.get('/index/:id',(req,res,next)=>{
+    res.cookie('_id',req.params.id)
     res.redirect(302,'http://localhost/pages/index')
 })
 router.get('/login',(req,res,next)=>{

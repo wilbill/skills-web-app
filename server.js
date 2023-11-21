@@ -52,6 +52,9 @@ app.get('/pages/sign-in', function(req, res){
 app.get('/pages/sign-up', function(req, res){
     res.render('pages/sign-up')
 })
+app.get('/pages/login', function(req, res){
+    res.render('pages/login')
+})
 
 // app.get('/pages/tables', function(req, res){
 //     res.render('pages/tables')
