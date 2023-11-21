@@ -37,18 +37,12 @@ axios.get('http://localhost:4000/skills')
 //Assuming one has access to the index page...ie has logged in
 app.get('/pages/index', function(req, res, next){   
     //must be accessed after login, hence cookies needed
-
-    res.render('pages/index', {skills:skills})
-    
+    res.render('pages/index', {skills:skills})    
 })
 
 app.get('/pages/profile', function(req, res){
     res.render('pages/profile', {skills:skills});
 })
-
-// app.get('/pages/dashboard', function(req, res){
-//     res.render('pages/dashboard')
-// })
 
 app.get('/pages/profile', function(req, res){
     res.render('pages/profile')
@@ -64,14 +58,6 @@ app.get('/pages/sign-up', function(req, res){
 app.get('/pages/login', function(req, res){
     res.render('pages/login')
 })
-
-// app.get('/pages/tables', function(req, res){
-//     res.render('pages/tables')
-// })
-
-// app.get('/pages/rtl', function(req, res){
-//     res.render('pages/rtl')
-// })
 
 app.listen(80, function(req, res, next){
     console.log('Server running on port 80');
