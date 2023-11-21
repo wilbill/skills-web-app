@@ -5,6 +5,8 @@ const app= express();
 const cookieParser = require('cookie-parser')
 const loginRouter = require('./routes/login')
 const profileRouter = require('./routes/profile-routes')
+const axios = require('axios')
+
 
 // let  skillsArr = {'JAVA':{price:'10', date:''}, 'C++':{}, 'C#', 'C', 'LARAVEL', 
 // 'JAVASCRIPT', 'NODE JS', 'REACT JS', 'ANGULAR','PYTHON', 'PHP', 
@@ -17,15 +19,27 @@ app.set('view engine', 'ejs')
 
 app.use(express.static(path.join(__dirname, 'views')));
 
+app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
-app.use(cookieParser())
 
 app.use('/user',loginRouter);
 app.use('/profile',profileRouter);
 
 app.get('/', (req, res, next)=>{
-    res.redirect('pages/login')
+    console.log(req.cookies)
+    if(req.cookies._id){
+        const id = req.cookies['_id']
+        axios.get(`http://localhost:4000/profile/findOne/${id}`).then((response)=>{
+            console.log('Response', response.data)
+            res.render('pages/index',{data: response.data})
+        }).catch((err)=>{
+            console.log('Err', err)
+            res.redirect('pages/login')
+        })
+    }else{
+        res.redirect('pages/login')
+    }
 })
 //Assuming one has access to the index page...ie has logged in
 app.get('/pages/index', function(req, res, next){
