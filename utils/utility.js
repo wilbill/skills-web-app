@@ -11,6 +11,22 @@ async function getSkills(){
         throw err; 
       }
 }
+async function getProfiles(){
+    try {
+        const response = await axios.get('http://localhost:4000/profile/all');
+        const profiles = response.data;
+        console.log("profiles:: ", profiles);
+        return profiles;
+      } catch (err) {
+        console.log(err);
+        throw err; 
+      }
+}
+
+function dateNow(){
+    const date = new Date();
+    return date;
+  }
 
 
-module.exports = {getSkills}
+module.exports = {getSkills,dateNow,getProfiles}
