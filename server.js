@@ -5,12 +5,10 @@ const app= express();
 const cookieParser = require('cookie-parser')
 const loginRouter = require('./routes/login')
 const profileRouter = require('./routes/profile-routes')
+const axios = require('axios');
+const { error } = require('console');
 
-// let  skillsArr = {'JAVA':{price:'10', date:''}, 'C++':{}, 'C#', 'C', 'LARAVEL', 
-// 'JAVASCRIPT', 'NODE JS', 'REACT JS', 'ANGULAR','PYTHON', 'PHP', 
-// 'PERL', 'RUST', 'SCALA', 'HTML', 'CSS', 'SQL', 'NoSQL',
-//         'TypeScript', 'MATLAB'
-// }
+let skills;
 
 app.set('view engine', 'ejs')
 // app.set('', path.join(__dirname, 'views'));
@@ -27,14 +25,25 @@ app.use('/profile',profileRouter);
 app.get('/', (req, res, next)=>{
     res.redirect('pages/login')
 })
+
+axios.get('http://localhost:4000/skills')
+.then((res)=>{
+    // console.log(res.data)
+    skills=res.data
+    console.log(skills)
+    
+})
+.catch((err)=>{console.log(error)})
 //Assuming one has access to the index page...ie has logged in
-app.get('/pages/index', function(req, res, next){
+app.get('/pages/index', function(req, res, next){   
     //must be accessed after login, hence cookies needed
-    res.render('pages/index')
+
+    res.render('pages/index', {skills:skills})
+    
 })
 
 app.get('/pages/profile', function(req, res){
-    res.render('pages/profile');
+    res.render('pages/profile', {skills:skills});
 })
 
 // app.get('/pages/dashboard', function(req, res){
