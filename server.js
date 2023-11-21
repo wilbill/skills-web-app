@@ -36,8 +36,12 @@ axios.get('http://localhost:4000/skills')
 .catch((err)=>{console.log(error)})
 //Assuming one has access to the index page...ie has logged in
 app.get('/pages/index', function(req, res, next){   
+    function dateNow(){
+        const date = new Date();
+        return date;
+      }
     //must be accessed after login, hence cookies needed
-    res.render('pages/index', {skills:skills})    
+    res.render('pages/index', {skills:skills, dateFunc:dateNow()})    
 })
 
 app.get('/pages/profile', function(req, res){
