@@ -11,17 +11,6 @@ async function getSkills(){
         throw err; 
       }
 }
-// async function fetchData() {
-//     try {
-//       const skills = await getSkills();
-//       console.log("here ", skills);
-//     } catch (err) {
-//       console.error('Error fetching skills:', err);
-//     }
-//   }
 
-//   fetchData()
-
-// console.log("here ",getSkills())
 
 module.exports = {getSkills}

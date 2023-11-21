@@ -45,7 +45,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  " href="../pages/index">
+          <a class="nav-link  " href="/">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -285,10 +285,11 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                Alec Thompson
+                <%= data.userId.username%>
               </h5>
               <p class="mb-0 font-weight-bold text-sm">
-                Java / Javascript Developer
+                <%= data.skills%>
+
               </p>
             </div>
           </div>
@@ -297,6 +298,8 @@
       </div>
       
     </div>
+    <!-- no data -->
+    <% if(!data){%>
     <div class="container-fluid py-5" >
       <div class="row">
         <div class="col-2"></div>
@@ -342,85 +345,28 @@
         </div>
       </div>
     </div>
+    <%}%>
+<!-- no data -->
+
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12 col-xl-4">
           <div class="card h-100">
             <div class="card-header pb-0 p-3">
-              <h6 class="mb-0">Platform Settings</h6>
+              <h6 class="mb-0">Personal Information</h6>
             </div>
             <div class="card-body p-3">
-              <h6 class="text-uppercase text-body text-xs font-weight-bolder">Account</h6>
+              <!-- <h6 class="text-uppercase text-body text-xs font-weight-bolder">Account</h6> -->
+              
               <ul class="list-group">
-                <li class="list-group-item border-0 px-0">
-                  <div class="form-check form-switch ps-0">
-                    <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault" checked>
-                    <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault">Email me when someone follows me</label>
-                  </div>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; <%= data.userId.username%>
                 </li>
-                <li class="list-group-item border-0 px-0">
-                  <div class="form-check form-switch ps-0">
-                    <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault1">
-                    <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault1">Email me when someone answers on my post</label>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 px-0">
-                  <div class="form-check form-switch ps-0">
-                    <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault2" checked>
-                    <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault2">Email me when someone mentions me</label>
-                  </div>
-                </li>
-              </ul>
-              <h6 class="text-uppercase text-body text-xs font-weight-bolder mt-4">Application</h6>
-              <ul class="list-group">
-                <li class="list-group-item border-0 px-0">
-                  <div class="form-check form-switch ps-0">
-                    <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault3">
-                    <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault3">New launches and projects</label>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 px-0">
-                  <div class="form-check form-switch ps-0">
-                    <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault4" checked>
-                    <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault4">Monthly product updates</label>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 px-0 pb-0">
-                  <div class="form-check form-switch ps-0">
-                    <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault5">
-                    <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault5">Subscribe to newsletter</label>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-xl-4">
-          <div class="card h-100">
-            <div class="card-header pb-0 p-3">
-              <div class="row">
-                <div class="col-md-8 d-flex align-items-center">
-                  <h6 class="mb-0">Profile Information</h6>
-                </div>
-                <div class="col-md-4 text-end">
-                  <a href="javascript:;">
-                    <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="card-body p-3">
-              <p class="text-sm">
-                Hi, I’m Alec Thompson, Skills: Java software developer with 4 years of professional experience, databases, APIs, and software testing. I have experience in all phases of SDLC. strategic analysis, defining software requirements, system building, and implementing pre-deployment tests. I possess expertise Java, Eclipse, IntelliJ IDE, JavaScript, jQuery, Bootstrap, Spring Boot, Microservices, RESTful APIs, SOAP, Node.js, Express, AngularJS, ReactJS, web MVC, Hibernate, Docker Containers, Kubernetes, MySQL, PostgreSQL, JUnit testing, Mockito Integrated testing, MongoDB,
-                 Kafka/RabbitMQ, Scrum/Agile methodologies, AWS, front-end and back-end development, including experience with databases, APIs, and software testing.bility to learn and adapt to new tools and technologies. I have a proven track record of proficiency in all phases of SDLC. This includes strategic analysis, defining software requirements, system building, and implementing pre-deployment tests. As an effective collaborator, I prioritize ensuring that end-users fully understand complex systems through training and user manual preparation. I possess expertise in a wide range of technologies, such as Java, Eclipse, IntelliJ IDE, JavaScript, jQuery, Bootstrap, Spring Boot, Microservices, RESTful APIs, SOAP, Node.js, Express, AngularJS, ReactJS, web MVC, Hibernate, Docker Containers, Kubernetes, MySQL, PostgreSQL, JUnit testing,
-                 Mockito Integrated testing, MongoDB, Kafka/RabbitMQ, Scrum/Agile methodologies, AWS, and CI/CD pipelines.
-              </p>
-              <hr class="horizontal gray-light my-4">
-              <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; Alec M. Thompson</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; brobbey@hotmail.com</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; USA</li>
+              
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp;  <%= data.userId.email%>
+              </li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; <%= data.school%>
+              </li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Date Joined:</strong> &nbsp; <%= data.date%>
                 <li class="list-group-item border-0 ps-0 pb-0">
                   <strong class="text-dark text-sm">Social:</strong> &nbsp;
                   <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
@@ -437,7 +383,31 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-xl-4">
+        <div class="col-12 col-xl-8">
+          <div class="card h-100">
+            <div class="card-header pb-0 p-3">
+              <div class="row">
+                <div class="col-md-8 d-flex align-items-center">
+                  <h6 class="mb-0">Profile Description</h6>
+                </div>
+                <div class="col-md-4 text-end">
+                  <a href="javascript:;">
+                    <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-3">
+              <p class="text-sm">
+                <%= data.description%>
+
+              </p>
+              <hr class="horizontal gray-light my-4">
+              
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-12 col-xl-4">
           <div class="card h-100">
             <div class="card-header pb-0 p-3">
               <h6 class="mb-0">Conversations</h6>
@@ -497,8 +467,8 @@
               </ul>
             </div>
           </div>
-        </div>
-        <div class="col-12 mt-4">
+        </div> -->
+        <!-- <div class="col-12 mt-4">
           <div class="card mb-4">
             <div class="card-header pb-0 p-3">
               <h6 class="mb-1">Projects</h6>
@@ -630,7 +600,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
