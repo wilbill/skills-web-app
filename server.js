@@ -46,30 +46,17 @@ app.get('/', async (req, res, next)=>{
 })
 
 //Assuming one has access to the index page...ie has logged in
-// app.get('/pages/index', function(req, res, next){   
-//     //must be accessed after login, hence cookies needed
-//     let skills = getSkills()
-//     res.render('pages/index', {skills:skills})
-    
-// })
+app.get('/pages/index', function(req, res, next){   
+    function dateNow(){
+        const date = new Date();
+        return date;
+      }
+    //must be accessed after login, hence cookies needed
+    res.render('pages/index', {skills:skills, dateFunc:dateNow()})    
+})
 
-app.get('/pages/profile', async function(req, res){
-    let skills =await getSkills()
-    console.log(skills)
-    if(req.cookies._id){
-        const id = req.cookies['_id']
-        axios.get(`http://localhost:4000/profile/findOne/${id}`).then((response)=>{
-            console.log('Response', response.data)
-            res.render('pages/profile',{data: response.data, skills: skills})
-        }).catch((err)=>{
-
-            console.log('Err', err)
-            res.render('pages/profile',{skills: skills})
-        })
-    }else{
-        res.redirect('pages/login')
-    }
-   
+app.get('/pages/profile', function(req, res){
+    res.render('pages/profile', {skills:skills});
 })
 
 // app.get('/pages/dashboard', function(req, res){
@@ -90,14 +77,6 @@ app.get('/pages/sign-up', function(req, res){
 app.get('/pages/login', function(req, res){
     res.render('pages/login')
 })
-
-// app.get('/pages/tables', function(req, res){
-//     res.render('pages/tables')
-// })
-
-// app.get('/pages/rtl', function(req, res){
-//     res.render('pages/rtl')
-// })
 
 app.listen(80, function(req, res, next){
     console.log('Server running on port 80');
