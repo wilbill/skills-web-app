@@ -5,6 +5,8 @@ const app= express();
 const cookieParser = require('cookie-parser')
 const loginRouter = require('./routes/login')
 const profileRouter = require('./routes/profile-routes')
+const skillRouter = require('./routes/skills-routes')
+const mailerRouter = require('./routes/mailer-routes')
 const axios = require('axios');
 const {getSkills,dateNow,getProfiles} = require('./utils/utility')
 
@@ -12,7 +14,7 @@ const {getSkills,dateNow,getProfiles} = require('./utils/utility')
 
 app.set('view engine', 'ejs')
 app.engine('ejs', ejsServer.renderFile)
-// app.set('', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'views')));
 
@@ -22,6 +24,8 @@ app.use(express.urlencoded({extended: false}))
 
 app.use('/user',loginRouter);
 app.use('/profile',profileRouter);
+app.use('/skill',skillRouter);
+app.use('/mailer',mailerRouter);
 
 app.get('/', async (req, res, next)=>{
 
@@ -72,10 +76,28 @@ app.get('/pages/profile', async function(req, res){
     }
    
 })
+app.get('/student/:id', async function(req, res){
+    let skills =await getSkills()
+    console.log(skills)
+    if(req.params.id){
+        const id = req.params.id
+        axios.get(`http://localhost:4000/profile/findProfile/${id}`).then((response)=>{
+            console.log('Response', response.data)
+            res.render('pages/student',{data: response.data, skills: skills})
+        }).catch((err)=>{
 
-// app.get('/pages/dashboard', function(req, res){
-//     res.render('pages/dashboard')
-// })
+            console.log('Err', err)
+            res.redirect('/')
+        })
+    }else{
+        res.red('pages/login')
+    }
+   
+})
+
+app.get('/pages/index', function(req, res){
+    res.redirect('/')
+})
 
 // app.get('/pages/profile', function(req, res){
 //     res.render('pages/profile')
@@ -90,6 +112,10 @@ app.get('/pages/sign-up', function(req, res){
 })
 app.get('/pages/login', function(req, res){
     res.render('pages/login')
+})
+app.get('/skills',async function(req, res){
+    let skills =await getSkills()
+    res.render('pages/skillall',{skills})
 })
 
 // app.get('/pages/tables', function(req, res){

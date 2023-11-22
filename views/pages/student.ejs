@@ -267,8 +267,8 @@
                 <%= data.userId.username%>
               </h5>
               <p class="mb-0 font-weight-bold text-sm">
-                <%= data.skills%>
-
+               <span><%= data.skills%></span> 
+                <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-target="<%=data.userId._id%>" onclick="connectMe(this)">Connect</button>
               </p>
             </div>
           </div>
