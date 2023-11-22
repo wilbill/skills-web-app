@@ -22,10 +22,11 @@ router.post('/create',(req,res,next)=>{
 
     axios.post('http://localhost:4000/profile/create', postbody).then((response)=>{
         console.log('Response', response.data)
-        res.render('http://localhost/pages/profile',{data:response.data})
+        // res.redirect('http://localhost/pages/profile',{data:response.data})
+        res.redirect('http://localhost/pages/profile')
     }).catch((err)=>{
         console.log('Err', err)
-        res.render('http://localhost/pages/profile')
+        res.redirect('http://localhost/pages/profile')
 
     })
     })

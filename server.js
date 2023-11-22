@@ -43,10 +43,10 @@ app.get('/', async (req, res, next)=>{
         }).catch((err)=>{
 
             console.log('Err', err)
-            res.redirect('pages/login')
+            res.redirect('/pages/profile')
         })
     }else{
-        res.redirect('pages/login')
+        res.redirect('/pages/login')
     }
 })
 
@@ -69,10 +69,10 @@ app.get('/pages/profile', async function(req, res){
         }).catch((err)=>{
 
             console.log('Err', err)
-            res.render('pages/profile',{skills: skills})
+            res.render('pages/profile',{skills: skills, data:undefined})
         })
     }else{
-        res.red('pages/login')
+        res.redirect('pages/login')
     }
    
 })

@@ -261,9 +261,11 @@
               <img src="../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
+          <%if(data){%>
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
+              
                 <%= data.userId.username%>
               </h5>
               <p class="mb-0 font-weight-bold text-sm">
@@ -272,6 +274,7 @@
               </p>
             </div>
           </div>
+          <%}%>
 
         </div>
       </div>
@@ -329,6 +332,7 @@
 
     <div class="container-fluid py-4">
       <div class="row">
+        <%if(data){%>
         <div class="col-12 col-xl-4">
           <div class="card h-100">
             <div class="card-header pb-0 p-3">
@@ -386,6 +390,8 @@
             </div>
           </div>
         </div>
+        <%}%>
+
         <!-- <div class="col-12 col-xl-4">
           <div class="card h-100">
             <div class="card-header pb-0 p-3">
